@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#064e3b">
+    <title>رفيق التاريخ | السيرة النبوية والخلفاء الراشدون</title>
+    
+    <!-- تحميل مكتبة Tailwind CSS للتصميم المتجاوب -->
+    <script src="vendor/tailwind.js"></script>
+    
+    <!-- تحميل خط Cairo العربي العصري والواضح -->
+<link href="vendor/cairo/cairo.css" rel="stylesheet">
+    
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="vendor/fa/css/all.min.css">
+    
+    <!-- مكتبة Tone.js لتوليد المؤثرات الصوتية التفاعلية بدون روابط خارجية -->
+    <script src="vendor/Tone.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            850: '#064e3b',
+                            950: '#022c22',
+                        },
+                        amber: {
+                            450: '#f59e0b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f0fdf4;
+            background-image: radial-gradient(#bbf7d0 0.8px, transparent 0.8px);
+            background-size: 24px 24px;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            overflow-x: hidden;
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+        
+        /* تنسيق خلفية الوضع الليلي */
+        html.dark body {
+            background-color: #020617;
+            background-image: radial-gradient(#064e3b 0.9px, transparent 0.9px);
+        }
+        
+        /* شريط تمرير مخصص أنيق */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 10px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* شاشة البداية المتحركة (Splash Screen) */
+        #splashScreen {
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .splash-hide {
+            opacity: 0;
+            transform: scale(1.08);
+            pointer-events: none;
+        }
+
+        /* حركات انتقالية وتفاعلية احترافية */
+        .fade-in-up {
+            animation: fadeInUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px) scale(0.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* حركة انتقال المحتوى الرئيسي عند تغيير التبويبات */
+        .view-transition-enter {
+            animation: viewSlideIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes viewSlideIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.99); filter: blur(2px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        .stagger-1 { animation-delay: 0.04s; }
+        .stagger-2 { animation-delay: 0.09s; }
+        .stagger-3 { animation-delay: 0.14s; }
+        .stagger-4 { animation-delay: 0.19s; }
+        .stagger-5 { animation-delay: 0.24s; }
+
+        /* حركة الطفو للعناصر المميزة */
+        .float-anim {
+            animation: floatAnim 3.5s ease-in-out infinite;
+        }
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
+        }
+
+        /* تأثير اللمعان على الأزرار الذهبية */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(25deg);
+            animation: shimmerMove 3s infinite;
+        }
+        @keyframes shimmerMove {
+            0% { left: -60%; }
+            40%, 100% { left: 130%; }
+        }
+
+        /* تأثير الضغط الفيزيائي للأزرار والبطاقات */
+        .interactive-card {
+            transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.24s ease, border-color 0.24s ease, background-color 0.2s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px -8px rgba(6, 78, 59, 0.18);
+        }
+        .interactive-card:active {
+            transform: scale(0.965);
+        }
+
+        /* تأثير تموج الضغط (Ripple Effect) */
+        .ripple-host {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(251, 191, 36, 0.35);
+            transform: scale(0);
+            animation: rippleAnim 0.55s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to {
+                transform: scale(3.5);
+                opacity: 0;
+            }
+        }
+
+        /* مؤشر التبويب النشط في الشريط السفلي */
+        .nav-item {
+            position: relative;
+            transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .nav-item i {
+            transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .nav-item.active-tab i {
+            transform: translateY(-2px) scale(1.15);
+        }
+
+        /* انتقال سلس لطي وفتح تفاصيل الأحداث */
+        .accordion-content {
+            display: grid;
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+            opacity: 1;
+        }
+        .accordion-content.collapsed {
+            grid-template-rows: 0fr;
+            opacity: 0;
+        }
+        .accordion-inner {
+            overflow: hidden;
+        }
+
+        /* احتفال النجاح عند الإجابة الصحيحة */
+        .confetti-piece {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 60;
+            animation: confettiFall 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) rotate(540deg) scale(0.4); opacity: 0; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stagger-1 { animation-delay: 0.05s; }
+        .stagger-2 { animation-delay: 0.12s; }
+        .stagger-3 { animation-delay: 0.19s; }
+        .stagger-4 { animation-delay: 0.26s; }
+        .stagger-5 { animation-delay: 0.33s; }
+
+        /* حركة الطفو للعناصر المميزة */
+        .float-anim {
+            animation: floatAnim 3.5s ease-in-out infinite;
+        }
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
+        }
+
+        /* تأثير اللمعان على الأزرار الذهبية */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(25deg);
+            animation: shimmerMove 3s infinite;
+        }
+        @keyframes shimmerMove {
+            0% { left: -60%; }
+            40%, 100% { left: 130%; }
+        }
+
+        /* تأثير الضغط الفيزيائي للأزرار والبطاقات */
+        .interactive-card {
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -8px rgba(6, 78, 59, 0.15);
+        }
+        .interactive-card:active {
+            transform: scale(0.97);
+        }
+
+        .pulse-btn {
+            animation: pulseShadow 2s infinite;
+        }
+        @keyframes pulseShadow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+            70% { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* زخرفة إسلامية هندسية للبطاقة الرئيسية */
+        .islamic-hero {
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+            position: relative;
+        }
+        .islamic-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(#34d399 1px, transparent 1px);
+            background-size: 22px 22px;
+            opacity: 0.15;
+        }
+
+        /* تأثيرات تفاعلية داخل الرسوم التوضيحية SVG */
+        .svg-hotspot {
+            cursor: pointer;
+            transition: transform 0.25s ease, filter 0.25s ease;
+            transform-origin: center;
+        }
+        .svg-hotspot:hover {
+            filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.9));
+        }
+
+        /* حركة نبض لطيفة للشعار المخصص */
+        .logo-glow {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+        }
+
+        /* ===== هوية بصرية جديدة (مرجع التصميم) ===== */
+        :root { --gold:#f5b324; --gold-soft:#fde68a; --green-d:#064e3b; --green-dd:#022c22; --cream:#fbf6e6; }
+        body { background-color: var(--cream);
+               background-image: radial-gradient(rgba(6,78,59,.10) 1px, transparent 1px); background-size: 26px 26px; }
+        html.dark body { background-color:#04120d; background-image: radial-gradient(rgba(52,211,153,.12) 1px, transparent 1px); }
+        header.app-header { padding-top: env(safe-area-inset-top); background: linear-gradient(180deg,#0a6a4f 0%,#064e3b 100%) !important; }
+        html.dark header.app-header { background: linear-gradient(180deg,#0b2a21 0%,#04120d 100%) !important; }
+        main#appContainer { padding-bottom: calc(7.5rem + env(safe-area-inset-bottom)); }
+
+        /* شريط التنقل السفلي الأخضر مع تبويب ذهبي نشط */
+        nav.app-nav { left:0 !important; right:0 !important; bottom:0 !important; transform:none !important; width:100% !important;
+            border-radius: 22px 22px 0 0 !important; background: linear-gradient(180deg,#0a6a4f,#064e3b) !important;
+            border: 0 !important; border-top: 2px solid rgba(245,179,36,.55) !important;
+            padding: 6px 8px calc(6px + env(safe-area-inset-bottom)) !important; box-shadow: 0 -10px 30px rgba(2,44,34,.35) !important; }
+        nav.app-nav .nav-item { color:#d1fae5 !important; background:transparent !important; }
+        nav.app-nav .nav-item.active-tab { background: linear-gradient(180deg,#fcd34d,#f5b324) !important; color:#022c22 !important; box-shadow: 0 4px 14px rgba(245,179,36,.45); }
+        @media (min-width:640px){ nav.app-nav{ left:50% !important; transform:translateX(-50%) !important; width:480px !important; } }
+
+        /* شاشة البداية: قوس وفوانيس */
+        #splashScreen { background: radial-gradient(ellipse at 50% 28%, #0f7a58 0%, #064e3b 45%, #022c22 100%); overflow:hidden; }
+        .lantern-swing { transform-origin: 50% 0; animation: swing 4s ease-in-out infinite; }
+        .lantern-swing.l2 { animation-delay: -2s; }
+        @keyframes swing { 0%,100%{transform:rotate(-4deg)} 50%{transform:rotate(4deg)} }
+        .gold-title { background: linear-gradient(180deg,#fff3b0,#f5b324 55%,#b45309); -webkit-background-clip:text; background-clip:text; color:transparent; filter: drop-shadow(0 3px 6px rgba(0,0,0,.35)); }
+        .orn-divider { display:flex; align-items:center; gap:10px; width:220px; margin:10px auto 14px; color:#f5b324; }
+        .orn-divider::before,.orn-divider::after { content:''; flex:1; height:1.5px; background:linear-gradient(90deg,transparent,#f5b324); }
+        .orn-divider::after { transform: scaleX(-1); }
+
+        /* بطاقة الهيرو على الصفحة الرئيسية بخلفية مدينة */
+        .hero-card { background: linear-gradient(180deg,#fff8dc 0%, #f7e7b0 55%, #e9d08a 100%); border:2px solid #e2b64a; border-radius:28px; overflow:hidden; position:relative; box-shadow:0 14px 30px -12px rgba(120,80,10,.35); }
+        html.dark .hero-card { background: linear-gradient(180deg,#0b2a21,#063b2d 60%,#04261c); border-color:#8a6a1c; }
+        .hero-badge { background: linear-gradient(180deg,#0a6a4f,#064e3b); border:2px solid #f5b324; color:#fde68a; border-radius:999px; }
+        .btn-gold { background: linear-gradient(180deg,#fcd34d,#f5b324); color:#022c22; border:1.5px solid #b7791f; box-shadow:0 4px 0 #b7791f, 0 10px 18px -6px rgba(180,120,20,.5); }
+        .btn-gold:active { transform: translateY(2px); box-shadow:0 2px 0 #b7791f; }
+        .btn-green { background: linear-gradient(180deg,#0f8a63,#064e3b); color:#fff; border:1.5px solid #f5b324; box-shadow:0 4px 0 #022c22, 0 10px 18px -6px rgba(2,44,34,.5); }
+        .btn-green:active { transform: translateY(2px); box-shadow:0 2px 0 #022c22; }
+
+        /* بطاقات العصور بصور مصغرة وخط ذهبي */
+        .era-thumb { width:64px; height:64px; border-radius:16px; flex-shrink:0; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; border:2px solid rgba(245,179,36,.7); box-shadow: inset 0 0 18px rgba(0,0,0,.35); }
+        .era-thumb svg { position:absolute; inset:0; width:100%; height:100%; }
+        .era-line { position:relative; }
+        .era-line::before { content:''; position:absolute; top:12px; bottom:12px; right:7px; width:3px; border-radius:3px; background: linear-gradient(180deg,#f5b324,#d99a14); }
+        .era-dot { position:absolute; left:0; top:50%; width:17px; height:17px; margin-top:-8px; border-radius:50%; background:#f5b324; border:3px solid #fff7d6; box-shadow:0 0 0 2px #d99a14; }
+        html.dark .era-dot { border-color:#04120d; }
+
+        /* تبويب الألعاب: شريط تقدم سميك */
+        .act-progress { height:12px; border-radius:99px; background:#d9e8df; overflow:hidden; }
+        html.dark .act-progress { background:#0b2a21; }
+        .act-progress > div { height:100%; background: linear-gradient(90deg,#0f8a63,#34d399); border-radius:99px; transition: width .5s ease; }
+        #feedbackModal > div { max-height: 92vh; overflow-y:auto; }
+    </style>
+</head>
+<body class="text-slate-800 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <!-- ================= شاشة البداية المتحركة (Splash Screen) ================= -->
+    <div id="splashScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-white p-6 text-center" style="display: flex;">
+        <!-- قوس إسلامي وفوانيس -->
+        <svg viewBox="0 0 360 640" preserveAspectRatio="xMidYMin slice" class="absolute inset-0 w-full h-full pointer-events-none" style="opacity:.95">
+            <defs><linearGradient id="gArch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#b7791f"/></linearGradient></defs>
+            <path d="M20 640 V230 C20 120 120 80 180 14 C240 80 340 120 340 230 V640" fill="none" stroke="url(#gArch)" stroke-width="3" opacity=".7"/>
+            <path d="M36 640 V236 C36 135 128 98 180 40 C232 98 324 135 324 236 V640" fill="none" stroke="url(#gArch)" stroke-width="1.5" opacity=".45"/>
+            <g class="lantern-swing" style="transform-origin:62px 0"><line x1="62" y1="0" x2="62" y2="92" stroke="#f5b324" stroke-width="2"/><path d="M50 98 h24 l-3 10 h-18z" fill="#f5b324"/><rect x="52" y="108" width="20" height="36" rx="5" fill="#fbbf24" opacity=".92"/><path d="M52 144 h20 l-4 12 h-12z" fill="#b7791f"/><circle cx="62" cy="126" r="22" fill="#fde68a" opacity=".18"/></g>
+            <g class="lantern-swing l2" style="transform-origin:298px 0"><line x1="298" y1="0" x2="298" y2="128" stroke="#f5b324" stroke-width="2"/><path d="M286 134 h24 l-3 10 h-18z" fill="#f5b324"/><rect x="288" y="144" width="20" height="36" rx="5" fill="#fbbf24" opacity=".92"/><path d="M288 180 h20 l-4 12 h-12z" fill="#b7791f"/><circle cx="298" cy="162" r="22" fill="#fde68a" opacity=".18"/></g>
+        </svg>
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="w-28 h-28 rounded-3xl bg-gradient-to-br from-emerald-900 via-emerald-950 to-slate-950 flex items-center justify-center shadow-2xl mb-5 float-anim border-2 border-amber-400/60 logo-glow p-2">
+                <svg viewBox="0 0 120 120" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="goldGradSplash" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fde68a"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#b45309"/></linearGradient>
+                        <linearGradient id="emeraldGradSplash" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#064e3b"/></linearGradient>
+                    </defs>
+                    <rect x="24" y="24" width="72" height="72" rx="12" fill="none" stroke="url(#goldGradSplash)" stroke-width="2.5" opacity="0.55"/>
+                    <rect x="24" y="24" width="72" height="72" rx="12" fill="none" stroke="url(#goldGradSplash)" stroke-width="2.5" transform="rotate(45 60 60)" opacity="0.85"/>
+                    <path d="M36 74 C36 48, 60 36, 60 28 C60 36, 84 48, 84 74 Z" fill="url(#emeraldGradSplash)" stroke="url(#goldGradSplash)" stroke-width="2.5"/>
+                    <path d="M60 15 A6 6 0 1 0 65 23 A4.8 4.8 0 1 1 60 15 Z" fill="url(#goldGradSplash)"/>
+                    <path d="M28 74 Q44 69 60 76 Q76 69 92 74 L89 90 Q74 84 60 91 Q46 84 31 90 Z" fill="#fef3c7" stroke="url(#goldGradSplash)" stroke-width="2.5"/>
+                    <line x1="60" y1="76" x2="60" y2="91" stroke="#b45309" stroke-width="2"/>
+                </svg>
+            </div>
+            <h1 class="gold-title text-6xl font-black leading-tight">رفيق</h1>
+            <h1 class="text-4xl font-black text-white leading-tight">التاريخ الإسلامي</h1>
+            <div class="orn-divider"><i class="fa-solid fa-diamond text-[10px]"></i></div>
+            <p class="text-emerald-100 text-sm sm:text-base max-w-xs mb-8 leading-relaxed">رحلة تفاعلية مصورة في السيرة النبوية وعصر الخلفاء الراشدين</p>
+            <div class="w-56 bg-emerald-950/80 rounded-full h-3 p-0.5 border border-amber-400/50 overflow-hidden mb-3">
+                <div id="splashLoader" class="bg-gradient-to-l from-amber-300 to-amber-500 h-full rounded-full transition-all duration-300" style="width: 100%;"></div>
+            </div>
+            <span class="text-xs text-emerald-300 font-bold animate-pulse">جاري تجهيز الخرائط والأنشطة التفاعلية...</span>
+        </div>
+    </div>
+
+    <!-- ================= الشريط العلوي (Header) ================= -->
+    <header class="app-header bg-emerald-900/95 dark:bg-slate-900/95 backdrop-blur-md text-white shadow-lg sticky top-0 z-40 border-b border-emerald-800 dark:border-slate-800 transition-colors">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="navigateTo('home')">
+                <!-- لوجو التطبيق المصغر في الشريط العلوي -->
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-950 to-slate-900 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform border border-amber-400/70 p-1">
+                    <svg viewBox="0 0 120 120" class="w-full h-full">
+                        <defs>
+                            <linearGradient id="goldGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fde68a"></stop>
+                                <stop offset="100%" stop-color="#f59e0b"></stop>
+                            </linearGradient>
+                        </defs>
+                        <rect x="24" y="24" width="72" height="72" rx="12" fill="none" stroke="url(#goldGradHeader)" stroke-width="3" transform="rotate(45 60 60)" opacity="0.8"></rect>
+                        <path d="M36 74 C36 48, 60 36, 60 28 C60 36, 84 48, 84 74 Z" fill="#10b981" stroke="url(#goldGradHeader)" stroke-width="3"></path>
+                        <path d="M60 15 A6 6 0 1 0 65 23 A4.8 4.8 0 1 1 60 15 Z" fill="url(#goldGradHeader)"></path>
+                        <path d="M28 74 Q44 69 60 76 Q76 69 92 74 L89 90 Q74 84 60 91 Q46 84 31 90 Z" fill="#fef3c7" stroke="url(#goldGradHeader)" stroke-width="2.5"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="font-black text-base sm:text-lg leading-tight">رفيق التاريخ الإسلامي</h1>
+                    <p class="text-[11px] text-emerald-200 dark:text-emerald-300 flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 inline-block animate-ping"></span>
+                        <span>السيرة النبوية والخلفاء الراشدون</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <!-- زر الوضع الليلي (Dark Mode) -->
+                <button id="darkModeBtn" onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-emerald-800 dark:bg-slate-800 hover:bg-emerald-700 dark:hover:bg-slate-700 text-amber-300 flex items-center justify-center transition active:scale-90 border border-emerald-700 dark:border-slate-700" title="الوضع الليلي / النهاري">
+                    <i id="darkModeIcon" class="fa-solid fa-sun text-amber-300"></i>
+                </button>
+                <!-- زر الصوت -->
+                <button id="soundToggleBtn" onclick="toggleSound()" class="w-10 h-10 rounded-xl bg-emerald-800 dark:bg-slate-800 hover:bg-emerald-700 dark:hover:bg-slate-700 text-emerald-100 flex items-center justify-center transition active:scale-90 border border-emerald-700 dark:border-slate-700" title="تفعيل/كتم الصوت">
+                    <i id="soundIcon" class="fa-solid fa-volume-high"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- شريط التقدم العام للطالب -->
+        <div class="w-full bg-emerald-950 dark:bg-slate-950 h-1.5">
+            <div id="globalProgressBar" class="bg-gradient-to-l from-amber-300 to-amber-500 h-1.5 transition-all duration-700 ease-out" style="width: 0%"></div>
+        </div>
+    </header>
+
+    <!-- ================= المحتوى الرئيسي المتغير ================= -->
+    <main id="appContainer" class="flex-1 max-w-4xl w-full mx-auto px-4 py-6 pb-28"></main>
+
+    <!-- ================= شريط التنقل السفلي العائم للموبايل ================= -->
+    <nav class="app-nav fixed bottom-3 inset-x-3 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:w-[440px] bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-2xl z-40 px-2 py-1.5 transition-colors">
+        <div class="flex justify-around items-center gap-1">
+            <button onclick="navigateTo('home')" id="nav-home" class="nav-item active-tab ripple-host flex-1 flex flex-col items-center py-2 rounded-2xl text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/70 font-extrabold">
+                <i class="fa-solid fa-house text-lg mb-0.5"></i>
+                <span class="text-[11px]">الرئيسية</span>
+            </button>
+            <button onclick="navigateTo('timeline')" id="nav-timeline" class="nav-item ripple-host flex-1 flex flex-col items-center py-2 rounded-2xl text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300">
+                <i class="fa-solid fa-timeline text-lg mb-0.5"></i>
+                <span class="text-[11px]">الخط الزمني</span>
+            </button>
+            <button onclick="navigateTo('activities')" id="nav-activities" class="nav-item ripple-host flex-1 flex flex-col items-center py-2 rounded-2xl text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-300 relative">
+                <i class="fa-solid fa-gamepad text-lg mb-0.5"></i>
+                <span class="text-[11px]">الأنشطة</span>
+                <span id="navBadgeCount" class="absolute top-1.5 right-6 w-4 h-4 rounded-full bg-amber-500 text-emerald-950 text-[10px] font-black flex items-center justify-center shadow-sm">5</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================= إشعار تفاعلي سريع (Toast) للرسوم والأدوات ================= -->
+    <div id="interactiveToast" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 dark:bg-slate-800/95 text-white px-4 py-3 rounded-2xl shadow-2xl border border-amber-400/40 max-w-xs w-[90%] text-center text-xs sm:text-sm font-bold hidden transition-all duration-300 transform -translate-y-4 opacity-0">
+        <div class="flex items-center justify-center gap-2 text-amber-400 mb-1">
+            <i class="fa-solid fa-star"></i>
+            <span id="toastTitle">معلومة تفاعلية</span>
+        </div>
+        <p id="toastBody" class="text-slate-200 font-normal leading-relaxed"></p>
+    </div>
+
+    <!-- ================= نافذة التغذية الراجعة التربوية (Modal) ================= -->
+    <div id="feedbackModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div id="feedbackCard" class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 shadow-2xl transform transition-all duration-300 scale-90 opacity-0 border border-slate-100 dark:border-slate-800">
+            <!-- رأس النافذة -->
+            <div class="flex flex-col items-center text-center">
+                <div id="feedbackIconContainer" class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-lg rotate-3">
+                    <!-- أيقونة الصح أو الخطأ -->
+                </div>
+                <h3 id="feedbackTitle" class="text-2xl font-black mb-1"></h3>
+                <p id="feedbackMessage" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm mb-4 leading-relaxed"></p>
+            </div>
+
+            <!-- صندوق المعلومة الإثرائية أو العلاجية -->
+            <div id="pedagogicalBox" class="rounded-2xl p-4 mb-6 border text-right shadow-inner">
+                <div class="flex items-center gap-2 font-bold text-sm mb-1.5" id="pedagogicalBadge"></div>
+                <p id="pedagogicalText" class="text-xs sm:text-sm leading-relaxed"></p>
+            </div>
+
+            <!-- أزرار الإجراء -->
+            <div id="feedbackActions" class="flex gap-3"></div>
+        </div>
+    </div>
+
+    <!-- ================= منطق التطبيق والبيانات التاريخية ================= -->
+    <script>
+        // --- نظام الوضع الليلي (Dark Mode) ---
+        let isDarkMode = false;
+        function initDarkMode() {
+            const savedTheme = localStorage.getItem('history_app_theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setDarkMode(true);
+            }
+        }
+        function toggleDarkMode() {
+            playSound('click');
+            setDarkMode(!isDarkMode);
+        }
+        function setDarkMode(enable) {
+            isDarkMode = enable;
+            const htmlEl = document.documentElement;
+            const icon = document.getElementById('darkModeIcon');
+            if (enable) {
+                htmlEl.classList.add('dark');
+                if (icon) icon.className = 'fa-solid fa-sun text-amber-300';
+                localStorage.setItem('history_app_theme', 'dark');
+            } else {
+                htmlEl.classList.remove('dark');
+                if (icon) icon.className = 'fa-solid fa-moon text-amber-300';
+                localStorage.setItem('history_app_theme', 'light');
+            }
+        }
+
+        // --- 1. نظام المؤثرات الصوتية المدمج (Tone.js) ---
+        let soundEnabled = true;
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            icon.className = soundEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark text-rose-300';
+            if (soundEnabled) playSound('click');
+        }
+
+        function playSound(type) {
+            if (!soundEnabled || typeof Tone === 'undefined') return;
+            try {
+                if (Tone.context.state !== 'running') Tone.start();
+                window._synth = window._synth || new Tone.Synth().toDestination();
+                const synth = window._synth;
+                if (type === 'success') {
+                    synth.triggerAttackRelease("C5", "16n");
+                    setTimeout(() => synth.triggerAttackRelease("E5", "16n"), 100);
+                    setTimeout(() => synth.triggerAttackRelease("G5", "16n"), 200);
+                    setTimeout(() => synth.triggerAttackRelease("C6", "4n"), 300);
+                } else if (type === 'error') {
+                    synth.triggerAttackRelease("E3", "8n");
+                    setTimeout(() => synth.triggerAttackRelease("C3", "4n"), 140);
+                } else if (type === 'click') {
+                    synth.triggerAttackRelease("G4", "32n");
+                } else if (type === 'pop') {
+                    synth.triggerAttackRelease("B4", "32n");
+                }
+            } catch (e) { console.log("Audio bypassed"); }
+        }
+
+        // --- إظهار إشعار تفاعلي عند الضغط على الرسوم التوضيحية ---
+        let toastTimer = null;
+        function showInteractiveTip(title, body) {
+            playSound('pop');
+            const toast = document.getElementById('interactiveToast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastBody').textContent = body;
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('-translate-y-4', 'opacity-0');
+                toast.classList.add('translate-y-0', 'opacity-100');
+            }, 10);
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-4', 'opacity-0');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 3500);
+        }
+
+        // --- 2. قاعدة البيانات التاريخية المرتبة زمنياً مع رسوم SVG تفاعلية ---
+        const historicalEras = [
+            {
+                id: 'seerah',
+                order: 1,
+                title: 'عصر السيرة النبوية الشريفة',
+                period: '571م - 632م (قبل الهجرة إلى 11 هـ)',
+                badge: 'البداية والتأسيس',
+                color: 'emerald',
+                icon: 'fa-kaaba',
+                summary: 'ميلاد النبي محمد ﷺ وبعثته بمكة، ثم الهجرة إلى المدينة المنورة وتأسيس أول دولة إسلامية ونشر رسالة التوحيد.',
+                svgIllustration: `
+                    <div class="relative">
+                        <svg viewBox="0 0 240 115" class="w-full h-36 rounded-2xl bg-gradient-to-b from-emerald-950 to-slate-900 p-2 shadow-inner">
+                            <!-- الهلال التفاعلي -->
+                            <g class="svg-hotspot" onclick="showInteractiveTip('التقويم الهجري وبداية النور', 'هاجر النبي ﷺ من مكة إلى المدينة عام 622م، فأشرق نور الدولة الإسلامية.')">
+                                <circle cx="195" cy="28" r="12" fill="#fbbf24"/>
+                                <path d="M199 23 A9 9 0 1 0 199 33 A7 7 0 1 1 199 23" fill="#022c22"/>
+                            </g>
+                            <!-- نجوم متلألئة -->
+                            <circle cx="45" cy="25" r="1.5" fill="#fde68a" class="animate-ping"/>
+                            <circle cx="80" cy="18" r="1.5" fill="#fde68a"/>
+                            <circle cx="150" cy="22" r="2" fill="#fde68a" class="animate-pulse"/>
+                            <!-- الكعبة المشرفة التفاعلية -->
+                            <g class="svg-hotspot" onclick="showInteractiveTip('الكعبة المشرفة وفتح مكة (8 هـ)', 'دخل النبي ﷺ مكة فاتحاً في 8 هـ وطهّر الكعبة من 360 صنماً وعفا عن أهل مكة.')">
+                                <rect x="92" y="34" width="56" height="54" rx="2" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+                                <line x1="92" y1="47" x2="148" y2="47" stroke="#fbbf24" stroke-width="3" stroke-dasharray="5,2"/>
+                                <rect x="114" y="60" width="12" height="28" fill="#fbbf24"/>
+                            </g>
+                            <path d="M10 88 Q 120 78 230 88 L 230 108 L 10 108 Z" fill="#065f46"/>
+                            <text x="120" y="102" font-size="9" fill="#a7f3d0" text-anchor="middle" font-weight="bold">اضغط على الكعبة أو الهلال لاستكشاف معلومة</text>
+                        </svg>
+                    </div>
+                `,
+                events: [
+                    { date: '571م (عام الفيل)', title: 'مولد النبي ﷺ', desc: 'وُلد سيدنا محمد ﷺ في مكة المكرمة في ربيع الأول عام الفيل.' },
+                    { date: '610م (40 عاماً)', title: 'البعثة ونزول الوحي', desc: 'نزل جبريل عليه السلام بالوحي في غار حراء وبدأت الدعوة السرية ثم الجهرية.' },
+                    { date: '1 هـ (622م)', title: 'الهجرة إلى المدينة', desc: 'هاجر النبي ﷺ مع أبي بكر الصديق إلى يثرب، وآخى بين المهاجرين والأنصار ووضع صحيفة المدينة.' },
+                    { date: '2 هـ (624م)', title: 'غزوة بدر الكبرى', desc: 'أول معركة فاصلة في الإسلام، انتصر فيها المسلمون (313 مقاتلاً) على قريش (1000 مقاتل).' },
+                    { date: '3 هـ (625م)', title: 'غزوة أُحد', desc: 'وقعت عند جبل أحد، وتعلم المسلمون فيها خطورة مخالفة أوامر القائد (ترك الرماة مواقعهم).' },
+                    { date: '5 هـ (627م)', title: 'غزوة الخندق (الأحزاب)', desc: 'حفر المسلمون خندقاً شمال المدينة بمشورة سلمان الفارسي وردّ الله الأحزاب.' },
+                    { date: '6 هـ (628م)', title: 'صلح الحديبية', desc: 'هدنة لمدة 10 سنوات مع قريش سُمي بالفتح المبين لتفرغ النبي لنشر الدعوة.' },
+                    { date: '8 هـ (630م)', title: 'فتح مكة وغزوة حنين', desc: 'دخل النبي ﷺ مكة فاتحاً دون قتال وعفا عن أهلها وحطم الأصنام.' },
+                    { date: '9 هـ (630م)', title: 'غزوة تبوك', desc: 'آخر غزوات النبي ﷺ لمواجهة الروم في شمال الجزيرة العربية.' },
+                    { date: '10 هـ - 11 هـ', title: 'حجة الوداع ووفاة النبي ﷺ', desc: 'ألقى النبي خطبة الوداع في عرفة، وتوفي في 12 ربيع الأول سنة 11 هـ.' }
+                ]
+            },
+            {
+                id: 'abubakr',
+                order: 2,
+                title: 'خلافة أبي بكر الصديق رضي الله عنه',
+                period: '11 هـ - 13 هـ (632م - 634م)',
+                badge: 'أول الخلفاء الراشدين',
+                color: 'amber',
+                icon: 'fa-shield-halved',
+                summary: 'حافظ على وحدة الدولة الإسلامية بعد وفاة النبي ﷺ، وقضى على المرتدين، وجمع القرآن، وبدأ الفتوحات خارج الجزيرة.',
+                svgIllustration: `
+                    <svg viewBox="0 0 240 115" class="w-full h-36 rounded-2xl bg-gradient-to-b from-amber-950 to-stone-900 p-2 shadow-inner">
+                        <g class="svg-hotspot" onclick="showInteractiveTip('جمع القرآن الكريم (12 هـ)', 'أشار عمر بن الخطاب على أبي بكر بجمع القرآن بعد استشهاد الحفاظ في اليمامة، فكلف زيد بن ثابت بذلك.')">
+                            <rect x="75" y="22" width="90" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+                            <line x1="120" y1="22" x2="120" y2="82" stroke="#d97706" stroke-width="2.5"/>
+                            <line x1="86" y1="36" x2="110" y2="36" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="86" y1="48" x2="110" y2="48" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="86" y1="60" x2="105" y2="60" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="130" y1="36" x2="154" y2="36" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="130" y1="48" x2="154" y2="48" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="130" y1="60" x2="148" y2="60" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+                        </g>
+                        <text x="120" y="102" font-size="9" fill="#fcd34d" text-anchor="middle" font-weight="bold">اضغط على المصحف الشريف لمعرفة قصة جمعه</text>
+                    </svg>
+                `,
+                events: [
+                    { date: '11 هـ (632م)', title: 'البيعة وإنفاذ جيش أسامة', desc: 'بويع في سقيفة بني ساعدة، وأصر على إرسال جيش أسامة بن زيد إلى الشام تنفيذاً لأمر النبي ﷺ.' },
+                    { date: '11 هـ - 12 هـ', title: 'حروب الردة', desc: 'أرسل 11 لواءً بقيادة خالد بن الوليد للقضاء على المرتدين ومدّعي النبوة (مثل مسيلمة الكذاب في اليمامة).' },
+                    { date: '12 هـ (633م)', title: 'جمع القرآن الكريم', desc: 'أمر زيد بن ثابت بجمع القرآن في مصحف واحد بعد استشهاد عدد كبير من الحفاظ في معركة اليمامة.' },
+                    { date: '12 هـ - 13 هـ', title: 'بدء الفتوحات الإسلامية', desc: 'وجّه الجيوش لفتح العراق (بقيادة خالد بن الوليد) والشام (بقيادة أبي عبيدة وعمرو بن العاص)، وانتصر المسلمون في أجنادين.' }
+                ]
+            },
+            {
+                id: 'umar',
+                order: 3,
+                title: 'خلافة عمر بن الخطاب رضي الله عنه',
+                period: '13 هـ - 23 هـ (634م - 644م)',
+                badge: 'ثاني الخلفاء (الفاروق)',
+                color: 'teal',
+                icon: 'fa-scale-balanced',
+                summary: 'عصر الفتوحات الكبرى والتنظيم الإداري؛ أسس الدواوين والتقويم الهجري، وفتحت في عهده الشام والعراق وفارس ومصر والقدس.',
+                svgIllustration: `
+                    <svg viewBox="0 0 240 115" class="w-full h-36 rounded-2xl bg-gradient-to-b from-teal-950 to-slate-900 p-2 shadow-inner">
+                        <g class="svg-hotspot" onclick="showInteractiveTip('عدل الفاروق وتنظيم الدولة', 'أنشأ عمر ديوان الجند وديوان الخراج، ووضع نظام الحسبة لمراقبة الأسواق، واتخذ الهجرة بداية للتقويم.')">
+                            <line x1="120" y1="16" x2="120" y2="82" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+                            <line x1="72" y1="32" x2="168" y2="32" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+                            <path d="M58 56 Q72 70 86 56 Z" fill="#fbbf24"/>
+                            <line x1="72" y1="32" x2="58" y2="56" stroke="#99f6e4" stroke-width="1.8"/>
+                            <line x1="72" y1="32" x2="86" y2="56" stroke="#99f6e4" stroke-width="1.8"/>
+                            <path d="M154 56 Q168 70 182 56 Z" fill="#fbbf24"/>
+                            <line x1="168" y1="32" x2="154" y2="56" stroke="#99f6e4" stroke-width="1.8"/>
+                            <line x1="168" y1="32" x2="182" y2="56" stroke="#99f6e4" stroke-width="1.8"/>
+                            <rect x="102" y="80" width="36" height="6" rx="3" fill="#2dd4bf"/>
+                        </g>
+                        <text x="120" y="103" font-size="9" fill="#5eead4" text-anchor="middle" font-weight="bold">اضغط على ميزان العدل لاستكشاف تنظيمات الفاروق</text>
+                    </svg>
+                `,
+                events: [
+                    { date: '13 هـ - 14 هـ', title: 'التنظيم الإداري والتقويم الهجري', desc: 'أنشأ الدواوين (الجند، الخراج)، ونظام الحسبة، واعتمد الهجرة النبوية بداية للتقويم الهجري، وبنى المدن كالبصرة والكوفة والفسطاط.' },
+                    { date: '15 هـ (636م)', title: 'معركة اليرموك وفتح بيت المقدس', desc: 'هزم خالد بن الوليد الروم في اليرموك، وتسلم عمر مفاتيح القدس بنفسه وكتب العهدة العمرية.' },
+                    { date: '15 هـ (636م)', title: 'معركة القادسية', desc: 'انتصر سعد بن أبي وقاص على الفرس، وتبعها فتح المدائن عاصمة الفرس.' },
+                    { date: '21 هـ (642م)', title: 'معركة نهاوند (فتح الفتوح)', desc: 'انهارت فيها إمبراطورية الفرس نهائياً على يد النعمان بن مقرن.' },
+                    { date: '20 هـ - 21 هـ', title: 'فتح مصر', desc: 'فتحها عمرو بن العاص وحررها من ظلم الروم وأسس مدينة الفسطاط.' }
+                ]
+            },
+            {
+                id: 'uthman',
+                order: 4,
+                title: 'خلافة عثمان بن عفان رضي الله عنه',
+                period: '23 هـ - 35 هـ (644م - 656م)',
+                badge: 'ثالث الخلفاء (ذو النورين)',
+                color: 'blue',
+                icon: 'fa-ship',
+                summary: 'شهد عهده اتساعاً جغرافياً عظيماً، ونسخ القرآن في مصحف موحد، وإنشاء أول أسطول بحري إسلامي.',
+                svgIllustration: `
+                    <svg viewBox="0 0 240 115" class="w-full h-36 rounded-2xl bg-gradient-to-b from-blue-950 to-slate-900 p-2 shadow-inner">
+                        <g class="svg-hotspot" onclick="showInteractiveTip('أول أسطول بحري إسلامي (28 هـ)', 'بُني لحماية سواحل الشام ومصر من هجمات الروم، وانتصر في معركة ذات الصواري عام 34 هـ.')">
+                            <path d="M68 68 L172 68 L154 86 L86 86 Z" fill="#d97706" stroke="#fbbf24" stroke-width="1.5"/>
+                            <line x1="120" y1="18" x2="120" y2="68" stroke="#fef3c7" stroke-width="3"/>
+                            <path d="M123 20 Q162 42 123 63 Z" fill="#38bdf8"/>
+                            <path d="M117 26 Q88 44 117 61 Z" fill="#7dd3fc"/>
+                        </g>
+                        <path d="M10 86 Q65 79 120 86 T230 86 L230 108 L10 108 Z" fill="#0284c7"/>
+                        <text x="120" y="102" font-size="9" fill="#e0f2fe" text-anchor="middle" font-weight="bold">اضغط على السفينة لاستكشاف معركة ذات الصواري</text>
+                    </svg>
+                `,
+                events: [
+                    { date: '25 هـ (646م)', title: 'كتابة المصحف الإمام', desc: 'أمر بنسخ القرآن الكريم بلغة قريش وتوزيعه على الأمصار لتوحيد القراءة ومنع الاختلاف.' },
+                    { date: '28 هـ (649م)', title: 'إنشاء أول أسطول بحري', desc: 'أمر معاوية بن أبي سفيان وعبد الله بن سعد ببناء أسطول بحري لحماية الشواطئ وفتح جزيرتي قبرص ورودس.' },
+                    { date: '27 هـ - 31 هـ', title: 'اتساع الفتوحات الإسلامية', desc: 'امتدت الدولة شرقاً إلى خراسان وأرمينيا، وغرباً إلى إفريقية (تونس) وبلاد النوبة.' },
+                    { date: '34 هـ (655م)', title: 'معركة ذات الصواري', desc: 'أول معركة بحرية كبرى انتصر فيها الأسطول الإسلامي على أسطول الروم في البحر المتوسط.' }
+                ]
+            },
+            {
+                id: 'ali',
+                order: 5,
+                title: 'خلافة علي بن أبي طالب رضي الله عنه',
+                period: '35 هـ - 40 هـ (656م - 661م)',
+                badge: 'رابع الخلفاء الراشدين',
+                color: 'purple',
+                icon: 'fa-landmark',
+                summary: 'أول فدائي في الإسلام، نقل مقر الخلافة إلى الكوفة، ونظم الشرطة، وسعى لحقن دماء المسلمين في أصعب فترات الفتنة.',
+                svgIllustration: `
+                    <svg viewBox="0 0 240 115" class="w-full h-36 rounded-2xl bg-gradient-to-b from-purple-950 to-slate-900 p-2 shadow-inner">
+                        <g class="svg-hotspot" onclick="showInteractiveTip('نقل العاصمة إلى الكوفة (36 هـ)', 'اختار الإمام علي مدينة الكوفة بالعراق مقراً للخلافة لتوسط موقعها الجغرافي وسهولة إدارة الأقاليم منها.')">
+                            <path d="M50 82 L50 48 L85 30 L120 48 L155 30 L190 48 L190 82 Z" fill="#581c87" stroke="#e9d5ff" stroke-width="2"/>
+                            <rect x="108" y="56" width="24" height="26" rx="12" fill="#fbbf24"/>
+                            <circle cx="85" cy="54" r="5" fill="#c084fc"/>
+                            <circle cx="155" cy="54" r="5" fill="#c084fc"/>
+                        </g>
+                        <text x="120" y="102" font-size="9" fill="#f3e8ff" text-anchor="middle" font-weight="bold">اضغط على دار الخلافة لمعرفة سبب اختيار الكوفة</text>
+                    </svg>
+                `,
+                events: [
+                    { date: '35 هـ (656م)', title: 'مبايعته بالخلافة', desc: 'بويع بعد استشهاد عثمان رضي الله عنه، وعمل على تهدئة الأوضاع الداخلية.' },
+                    { date: '36 هـ (656م)', title: 'نقل مقر الخلافة إلى الكوفة', desc: 'نقل العاصمة من المدينة المنورة إلى الكوفة بالعراق لتكون في موقع متوسط بين أقاليم الدولة.' },
+                    { date: '36 هـ (656م)', title: 'تنظيم الشرطة', desc: 'نظم جهاز الشرطة لحفظ الأمن الداخلي وملاحقة الخارجين عن القانون.' },
+                    { date: '36 هـ - 37 هـ', title: 'موقعتا الجمل وصفين', desc: 'سعى للإصلاح وحقن الدماء بين المسلمين، وانتهت صفين بالتحكيم.' },
+                    { date: '40 هـ (661م)', title: 'استشهاده ونهاية عصر الخلفاء', desc: 'استشهد على يد عبد الرحمن بن ملجم في 17 رمضان سنة 40 هـ، وبوفاته انتهى عصر الخلفاء الراشدين.' }
+                ]
+            }
+        ];
+
+        // --- 3. بنك الأنشطة التفاعلية المتنوعة ---
+        const activitiesBank = [
+            {
+                id: 1,
+                type: 'mcq',
+                category: 'السيرة النبوية',
+                mainIdea: 'الفكرة الرئيسية: تُمثّل غزوات النبي ﷺ نقاط تحول كبرى؛ ففي غزوة الخندق (5 هـ) ابتكر المسلمون تكتيكاً دفاعياً جديداً لحماية المدينة المنورة.',
+                question: 'من الصحابي الذي أشار على النبي ﷺ بحفر الخندق شمال المدينة في غزوة الأحزاب عام 5 هـ؟',
+                options: ['سلمان الفارسي رضي الله عنه', 'خالد بن الوليد رضي الله عنه', 'سعد بن معاذ رضي الله عنه', 'أبو عبيدة بن الجراح رضي الله عنه'],
+                correctIndex: 0,
+                enrichment: 'أحسنت! سلمان الفارسي هو صاحب المشورة، وقد شارك النبي ﷺ بنفسه في الحفر، وكانت هذه الغزوة نقطة تحول انتقل بعدها المسلمون من الدفاع إلى الهجوم.',
+                remedial: 'تذكّر يا بطل: الخندق كان فكرة عسكرية فارسية لم تعرفها العرب من قبل، ولذلك أشار بها الصحابي الجليل القادم من بلاد فارس وهو (سلمان الفارسي رضي الله عنه).'
+            },
+            {
+                id: 2,
+                type: 'ordering',
+                category: 'الترتيب الزمني للخلفاء',
+                mainIdea: 'الفكرة الرئيسية: استمر عصر الخلفاء الراشدين قرابة 30 عاماً (من 11 هـ إلى 40 هـ) ساروا فيها على نهج النبي ﷺ بالشورى والعدل.',
+                question: 'رتّب الخلفاء الراشدين ترتيباً زمنياً صحيحاً من الأول إلى الرابع بالضغط عليهم بالترتيب:',
+                items: [
+                    { id: 'umar', text: 'عمر بن الخطاب (13 هـ - 23 هـ)' },
+                    { id: 'ali', text: 'علي بن أبي طالب (35 هـ - 40 هـ)' },
+                    { id: 'abubakr', text: 'أبو بكر الصديق (11 هـ - 13 هـ)' },
+                    { id: 'uthman', text: 'عثمان بن عفان (23 هـ - 35 هـ)' }
+                ],
+                correctOrder: ['abubakr', 'umar', 'uthman', 'ali'],
+                enrichment: 'ممتاز! الترتيب الزمني الصحيح هو: أبو بكر الصديق (11-13 هـ)، ثم عمر بن الخطاب (13-23 هـ)، ثم عثمان بن عفان (23-35 هـ)، ثم علي بن أبي طالب (35-40 هـ).',
+                remedial: 'انتبه للتسلسل التاريخي: بدأ العصر بأبي بكر بعد وفاة النبي (11 هـ)، تلاه الفاروق عمر (13 هـ)، ثم ذو النورين عثمان (23 هـ)، واختُتم بعلي بن أبي طالب (35 هـ).'
+            },
+            {
+                id: 3,
+                type: 'matching',
+                category: 'أعمال الخلفاء والفتوحات',
+                mainIdea: 'الفكرة الرئيسية: تميز عهد كل خليفة بإنجازات حضارية وعسكرية خالدة أسهمت في بناء الدولة الإسلامية وتأمين حدودها.',
+                question: 'صل كل إنجاز تاريخي بالخليفة الذي تم في عهده:',
+                pairs: [
+                    { left: 'حروب الردة وجمع القرآن الأول', right: 'أبو بكر الصديق' },
+                    { left: 'إنشاء الدواوين وفتح بيت المقدس', right: 'عمر بن الخطاب' },
+                    { left: 'إنشاء أول أسطول بحري وذات الصواري', right: 'عثمان بن عفان' },
+                    { left: 'نقل مقر الخلافة إلى الكوفة وتنظيم الشرطة', right: 'علي بن أبي طالب' }
+                ],
+                enrichment: 'عمل رائع! لقد ربطت كل إنجاز بعصره الصحيح بدقة متناهية. تذكر أن معركة ذات الصواري (34 هـ) أنهت سيطرة الروم على البحر المتوسط.',
+                remedial: 'راجع الفروق بين الأعمال: أبو بكر (حارب المرتدين)، عمر (نظم الدواوين وفتح القدس)، عثمان (بنى الأسطول البحري)، علي (نقل العاصمة للكوفة).'
+            },
+            {
+                id: 4,
+                type: 'truefalse',
+                category: 'تواريخ ومعارك فاصلة',
+                mainIdea: 'الفكرة الرئيسية: شهد عهد عمر بن الخطاب رضي الله عنه معارك حاسمة أنهت نفوذ أكبر إمبراطوريتين في العالم (الفرس والروم).',
+                question: 'سُميت معركة (نهاوند) عام 21 هـ بـ "فتح الفتوح" لأنها أنهت وجود إمبراطورية الفرس نهائياً.',
+                correctAnswer: true,
+                enrichment: 'صحيح 100%! قاد المسلمون في نهاوند النعمان بن مقرن عام 21 هـ، وبعدها لم تقم لدولة الفرس الساسانية قائمة.',
+                remedial: 'المعلومة صحيحة! معركة القادسية (15 هـ) فتحت المدائن، أما معركة نهاوند (21 هـ) فقد قضت على ما تبقى من جيوش الفرس ولذلك سُميت "فتح الفتوح".'
+            },
+            {
+                id: 5,
+                type: 'mcq',
+                category: 'عصر عثمان بن عفان',
+                mainIdea: 'الفكرة الرئيسية: مع اتساع الفتوحات ودخول غير العرب في الإسلام، ظهرت الحاجة الماسة لتوحيد قراءة القرآن الكريم وحماية السواحل.',
+                question: 'في أي عام هجري وقعت معركة "ذات الصواري" البحرية في عهد عثمان بن عفان رضي الله عنه؟',
+                options: ['34 هـ', '15 هـ', '2 هـ', '40 هـ'],
+                correctIndex: 0,
+                enrichment: 'إجابة دقيقة! وقعت معركة ذات الصواري عام 34 هـ بقيادة عبد الله بن سعد بن أبي السرح، وسُميت بذلك لكثرة صواري السفن المتشابكة.',
+                remedial: 'تذكر التسلسل: 2 هـ كانت غزوة بدر، و15 هـ اليرموك والقادسية، و40 هـ استشهاد علي؛ بينما معركة ذات الصواري كانت في أواخر عهد عثمان عام (34 هـ).'
+            }
+        ];
+
+        // --- صور مصغرة مرسومة (SVG) لكل عصر ---
+        function eraThumb(id) {
+            const sky = {seerah:['#0b3b2e','#022c22'],abubakr:['#7c4a12','#2b1a08'],umar:['#0f766e','#042f2e'],uthman:['#0c4a6e','#082f49'],ali:['#581c87','#2e1065']}[id] || ['#064e3b','#022c22'];
+            const fg = {
+                seerah:'<rect x="22" y="30" width="20" height="22" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/><rect x="22" y="36" width="20" height="3" fill="#fbbf24"/><path d="M8 52 Q32 46 56 52 V64 H8Z" fill="#065f46"/>',
+                abubakr:'<rect x="14" y="22" width="36" height="26" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/><line x1="32" y1="22" x2="32" y2="48" stroke="#d97706" stroke-width="2"/><path d="M8 54 Q32 48 56 54 V64 H8Z" fill="#92400e"/>',
+                umar:'<line x1="32" y1="14" x2="32" y2="48" stroke="#5eead4" stroke-width="3"/><line x1="14" y1="22" x2="50" y2="22" stroke="#5eead4" stroke-width="3"/><path d="M8 36 q6 8 12 0z M44 36 q6 8 12 0z" fill="#fbbf24"/><rect x="24" y="48" width="16" height="4" rx="2" fill="#5eead4"/><path d="M8 56 H56 V64 H8Z" fill="#115e59"/>',
+                uthman:'<path d="M12 42 H52 L45 52 H19Z" fill="#d97706"/><line x1="32" y1="14" x2="32" y2="42" stroke="#fef3c7" stroke-width="2.5"/><path d="M34 16 Q50 26 34 38Z" fill="#38bdf8"/><path d="M30 20 Q16 28 30 36Z" fill="#7dd3fc"/><path d="M4 54 Q18 50 32 54 T60 54 V64 H4Z" fill="#0284c7"/>',
+                ali:'<path d="M12 52 V34 L24 26 L32 32 L40 26 L52 34 V52Z" fill="#6b21a8" stroke="#e9d5ff" stroke-width="1.5"/><rect x="27" y="38" width="10" height="14" rx="5" fill="#fbbf24"/>'
+            }[id] || '';
+            return `<svg viewBox="0 0 64 64"><defs><linearGradient id="tg-${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="1" stop-color="${sky[1]}"/></linearGradient></defs><rect width="64" height="64" fill="url(#tg-${id})"/><circle cx="50" cy="12" r="4" fill="#fde68a" opacity=".9"/>${fg}</svg>`;
+        }
+
+        // --- حفظ التقدم محلياً + زر الرجوع في أندرويد ---
+        function loadSavedProgress() {
+            try { const v = JSON.parse(localStorage.getItem('history_app_done') || '[]'); return Array.isArray(v) ? v : []; } catch (e) { return []; }
+        }
+        function saveProgress() {
+            try { localStorage.setItem('history_app_done', JSON.stringify(state.completedActivities)); } catch (e) {}
+        }
+        // يستدعيه تطبيق أندرويد عند الضغط على زر الرجوع؛ يُرجع true إذا تم التعامل معه داخل الصفحة
+        window.handleAndroidBack = function () {
+            const modal = document.getElementById('feedbackModal');
+            if (modal && !modal.classList.contains('hidden')) { closeModal(false); return true; }
+            if (state.currentView !== 'home') { navigateTo('home'); return true; }
+            return false;
+        };
+
+        // --- 4. حالة التطبيق (State Management) ---
+        let state = {
+            currentView: 'home',
+            selectedEraId: 'seerah',
+            searchQuery: '',
+            expandedEvents: {},
+            currentActivityIndex: 0,
+            completedActivities: loadSavedProgress().filter(id => activitiesBank.some(a => a.id === id)),
+            tempOrderSelection: [],
+            tempMatchLeft: null,
+            tempMatches: {}
+        };
+
+        // --- 5. التنقل بين الشاشات ---
+        function navigateTo(view, eraId = null) {
+            playSound('click');
+            const isSameView = state.currentView === view;
+            state.currentView = view;
+            if (eraId) {
+                state.selectedEraId = eraId;
+                state.searchQuery = '';
+            }
+            
+            // تحديث شريط التنقل السفلي العائم مع حركة الأيقونة
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('active-tab', 'text-emerald-800', 'dark:text-emerald-300', 'bg-emerald-50', 'dark:bg-emerald-950/70', 'font-extrabold');
+                el.classList.add('text-slate-500', 'dark:text-slate-400');
+            });
+            const activeNav = document.getElementById(`nav-${view}`);
+            if (activeNav) {
+                activeNav.classList.remove('text-slate-500', 'dark:text-slate-400');
+                activeNav.classList.add('active-tab', 'text-emerald-800', 'dark:text-emerald-300', 'bg-emerald-50', 'dark:bg-emerald-950/70', 'font-extrabold');
+            }
+
+            render(true);
+
+            // تمرير أفقي تلقائي لتوسيط التبويب المختار في شريط العصور
+            if (view === 'timeline') {
+                setTimeout(() => {
+                    const activeEraChip = document.getElementById(`era-chip-${state.selectedEraId}`);
+                    if (activeEraChip) {
+                        activeEraChip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }
+                }, 60);
+            }
+
+            if (!isSameView || eraId) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateProgress() {
+            saveProgress();
+            const remaining = activitiesBank.length - state.completedActivities.length;
+            const pct = Math.round((state.completedActivities.length / activitiesBank.length) * 100);
+            document.getElementById('globalProgressBar').style.width = `${pct}%`;
+            
+            const badge = document.getElementById('navBadgeCount');
+            if (badge) {
+                if (remaining > 0) {
+                    badge.textContent = remaining;
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            }
+        }
+
+        // --- 6. بناء واجهات التطبيق ---
+        function render(animateView = false) {
+            const container = document.getElementById('appContainer');
+            updateProgress();
+
+            if (animateView) {
+                container.classList.remove('view-transition-enter');
+                void container.offsetWidth; // إعادة تفعيل الحركة بسلاسة
+                container.classList.add('view-transition-enter');
+            }
+
+            if (state.currentView === 'home') {
+                container.innerHTML = renderHome();
+            } else if (state.currentView === 'timeline') {
+                container.innerHTML = renderTimeline();
+            } else if (state.currentView === 'activities') {
+                container.innerHTML = renderActivities();
+            }
+        }
+
+        // الشاشة 1: الرئيسية
+        function renderHome() {
+            const progressPct = Math.round((state.completedActivities.length / activitiesBank.length) * 100);
+            return `
+                <div class="space-y-6">
+                    <!-- بطاقة الترحيب الرئيسية -->
+                    <div class="fade-in-up hero-card">
+                        <div class="px-5 pt-5 text-center relative z-10">
+                            <span class="hero-badge inline-flex items-center gap-2 px-4 py-2 font-black text-xs sm:text-sm shadow">
+                                <i class="fa-solid fa-book-open text-amber-300"></i>
+                                <span>منهج السيرة والخلفاء الراشدين</span>
+                            </span>
+                            <h2 class="text-2xl sm:text-3xl font-black mt-4 leading-snug text-emerald-950 dark:text-amber-200">اكتشف التاريخ الإسلامي بالتسلسل الزمني التفاعلي</h2>
+                            <p class="text-emerald-900/80 dark:text-emerald-100 text-xs sm:text-sm mt-2 leading-relaxed">تصفّح الغزوات والفتوحات والتواريخ الهجرية وأهم إنجازات كل عصر مع رسوم تفاعلية وأنشطة ذكية.</p>
+                        </div>
+                        <!-- أفق المدينة المنورة -->
+                        <svg viewBox="0 0 360 120" class="w-full block mt-2" preserveAspectRatio="xMidYMax slice">
+                            <path d="M0 96 Q90 80 180 92 T360 88 V120 H0Z" fill="#e3c37a"/>
+                            <g fill="#c9a24f" opacity=".75"><rect x="20" y="58" width="22" height="36"/><path d="M20 58 q11 -14 22 0z"/><rect x="48" y="70" width="18" height="24"/><rect x="290" y="62" width="26" height="32"/><path d="M290 62 q13 -16 26 0z"/><rect x="322" y="72" width="20" height="22"/></g>
+                            <rect x="248" y="28" width="9" height="66" fill="#d9b86a"/><path d="M246 28 h13 l-6.5 -12z" fill="#0f8a63"/><rect x="246" y="40" width="13" height="4" fill="#b7791f"/>
+                            <rect x="112" y="64" width="136" height="32" fill="#efdca0"/>
+                            <path d="M150 64 C150 36 214 36 214 64Z" fill="#0f8a63" stroke="#b7791f" stroke-width="2"/><path d="M182 30 v-9" stroke="#b7791f" stroke-width="2"/><circle cx="182" cy="19" r="3" fill="#f5b324"/>
+                            <g fill="#064e3b"><rect x="124" y="74" width="10" height="22" rx="5"/><rect x="224" y="74" width="10" height="22" rx="5"/><rect x="172" y="74" width="20" height="22" rx="10"/></g>
+                            <g><rect x="8" y="60" width="4" height="40" fill="#8a5a1c"/><path d="M10 60 q-18 -4 -22 8 M10 60 q18 -4 22 8 M10 60 q-10 -16 -4 -20 M10 60 q10 -16 4 -20" stroke="#16a34a" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+                            <g><rect x="346" y="64" width="4" height="36" fill="#8a5a1c"/><path d="M348 64 q-18 -4 -22 8 M348 64 q18 -4 22 8 M348 64 q-10 -16 -4 -20 M348 64 q10 -16 4 -20" stroke="#16a34a" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+                        </svg>
+                        <div class="px-5 pb-5 -mt-1 space-y-3 relative z-10">
+                            <button onclick="navigateTo('timeline')" class="btn-gold shimmer-btn w-full px-5 py-3.5 rounded-2xl font-black text-sm flex items-center justify-between transition">
+                                <span class="w-8 h-8 rounded-full bg-emerald-950/10 flex items-center justify-center"><i class="fa-regular fa-clock"></i></span>
+                                <span>استكشف الخط الزمني</span><span class="w-8"></span>
+                            </button>
+                            <button onclick="navigateTo('activities')" class="btn-green w-full px-5 py-3.5 rounded-2xl font-black text-sm flex items-center justify-between transition">
+                                <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"><i class="fa-solid fa-gamepad text-amber-300"></i></span>
+                                <span>الأنشطة التفاعلية (${state.completedActivities.length}/${activitiesBank.length})</span><span class="w-8"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة إنجاز الطالب -->
+                    <div class="fade-in-up stagger-1 bg-white dark:bg-slate-900 rounded-3xl p-4 sm:p-5 shadow-sm border border-emerald-100 dark:border-slate-800 flex items-center justify-between transition-colors">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white flex items-center justify-center text-xl shadow-md">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-slate-800 dark:text-slate-100 text-sm">مؤشر إتقان الدرس</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">أنجزت ${state.completedActivities.length} من ${activitiesBank.length} أنشطة تعليمية</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end gap-1.5 w-28">
+                            <span class="text-2xl font-black text-emerald-700 dark:text-emerald-400 leading-none">${progressPct}%</span>
+                            <div class="act-progress w-full"><div style="width:${progressPct}%"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- فهرس العصور بالترتيب التاريخي -->
+                    <div class="fade-in-up stagger-2">
+                        <div class="flex items-center justify-between mb-3 px-1">
+                            <h3 class="font-black text-base sm:text-lg text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-layer-group text-emerald-600 dark:text-emerald-400"></i>
+                                <span>العصور مرتبة زمنياً</span>
+                            </h3>
+                            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950 px-2.5 py-1 rounded-full">${historicalEras.length} مراحل</span>
+                        </div>
+
+                        <div class="era-line grid grid-cols-1 gap-3.5 pr-7">
+                            ${historicalEras.map((era, index) => `
+                                <div class="relative">
+                                    <span class="era-dot" style="left:auto; right:-28px"></span>
+                                    <div onclick="navigateTo('timeline', '${era.id}')" class="interactive-card fade-in-up stagger-${index + 1} bg-white dark:bg-slate-900 rounded-2xl p-3 border border-amber-200/80 dark:border-slate-800 hover:border-emerald-500 cursor-pointer flex items-center gap-3 transition-colors">
+                                        <div class="era-thumb">${eraThumb(era.id)}</div>
+                                        <div class="flex-1 min-w-0">
+                                            <span class="text-[11px] font-extrabold px-2 py-0.5 rounded-lg bg-amber-100 dark:bg-slate-800 text-amber-900 dark:text-amber-200 inline-block">${era.period}</span>
+                                            <h4 class="font-black text-sm sm:text-base text-slate-800 dark:text-slate-100 mt-1">${era.title}</h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2 leading-relaxed">${era.summary}</p>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-left text-slate-300 dark:text-slate-600"></i>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // تصفية الأحداث في الخط الزمني
+        function handleSearchEvents(val) {
+            state.searchQuery = val.trim();
+            render();
+            const input = document.getElementById('eraSearchInput');
+            if (input) {
+                input.focus();
+                input.setSelectionRange(val.length, val.length);
+            }
+        }
+
+        // طي أو فتح تفاصيل الحدث بتفاعل سلس بدون إعادة رسم الصفحة بالكامل
+        function toggleEventDetail(key) {
+            playSound('click');
+            const isCurrentlyCollapsed = state.expandedEvents[key] === false;
+            state.expandedEvents[key] = isCurrentlyCollapsed;
+            
+            const contentEl = document.getElementById(`event-desc-${key}`);
+            const iconEl = document.getElementById(`event-icon-${key}`);
+            if (contentEl && iconEl) {
+                if (isCurrentlyCollapsed) {
+                    contentEl.classList.remove('collapsed');
+                    iconEl.classList.remove('rotate-180');
+                } else {
+                    contentEl.classList.add('collapsed');
+                    iconEl.classList.add('rotate-180');
+                }
+            } else {
+                render();
+            }
+        }
+
+        // الشاشة 2: الخط الزمني التفصيلي
+        function renderTimeline() {
+            const era = historicalEras.find(e => e.id === state.selectedEraId) || historicalEras[0];
+            const filteredEvents = era.events.filter(ev => 
+                ev.title.includes(state.searchQuery) || 
+                ev.desc.includes(state.searchQuery) || 
+                ev.date.includes(state.searchQuery)
+            );
+            
+            return `
+                <div class="fade-in-up space-y-5">
+                    <!-- شريط التنقل الأفقي بين العصور بالترتيب -->
+                    <div class="flex gap-2 overflow-x-auto pb-1.5 pt-0.5 px-0.5 no-scrollbar scroll-smooth">
+                        ${historicalEras.map(item => `
+                            <button id="era-chip-${item.id}" onclick="navigateTo('timeline', '${item.id}')" 
+                                class="ripple-host px-4 py-2.5 rounded-2xl text-xs font-extrabold whitespace-nowrap transition-all duration-300 active:scale-95 flex items-center gap-2 ${item.id === era.id ? 'bg-emerald-800 dark:bg-emerald-700 text-white shadow-lg scale-[1.03] ring-2 ring-amber-400/50' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-800'}">
+                                <span class="w-5 h-5 rounded-full transition-colors ${item.id === era.id ? 'bg-amber-400 text-emerald-950' : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200'} flex items-center justify-center text-[11px] font-black">${item.order}</span>
+                                <span>${item.title.replace('خلافة ', '').replace(' رضي الله عنه', '')}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+
+                    <!-- بطاقة ملخص العصر والرسوم التوضيحية التفاعلية -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-6 shadow-sm border border-slate-200/90 dark:border-slate-800 transition-colors">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold text-xs">
+                                <i class="fa-solid ${era.icon} ml-1"></i> ${era.badge}
+                            </span>
+                            <span class="text-xs font-extrabold text-amber-800 dark:text-amber-300 bg-amber-100/80 dark:bg-amber-950/70 px-3 py-1 rounded-full border border-amber-300 dark:border-amber-800">
+                                <i class="fa-regular fa-calendar ml-1"></i> ${era.period}
+                            </span>
+                        </div>
+                        
+                        <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-2">${era.title}</h2>
+                        <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">${era.summary}</p>
+                        
+                        <!-- الرسم التوضيحي التفاعلي (SVG) -->
+                        <div class="overflow-hidden rounded-2xl">
+                            ${era.svgIllustration}
+                        </div>
+                    </div>
+
+                    <!-- الخط الزمني للأحداث والغزوات والفتوحات مع بحث فوري -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-6 shadow-sm border border-slate-200/90 dark:border-slate-800 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                            <h3 class="font-black text-base sm:text-lg text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-route text-emerald-600 dark:text-emerald-400"></i>
+                                <span>أهم الأحداث والفتوحات (${filteredEvents.length})</span>
+                            </h3>
+                            <!-- أداة بحث تفاعلية داخل العصر -->
+                            <div class="relative w-full sm:w-56">
+                                <input id="eraSearchInput" type="text" value="${state.searchQuery}" oninput="handleSearchEvents(this.value)" placeholder="ابحث بتاريخ أو غزوة..." class="w-full pl-3 pr-9 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-950 text-xs font-bold outline-none transition">
+                                <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-slate-400 text-xs"></i>
+                            </div>
+                        </div>
+
+                        <div class="relative border-r-2 border-emerald-300 dark:border-emerald-700 mr-3 space-y-4">
+                            ${filteredEvents.length > 0 ? filteredEvents.map((ev, idx) => {
+                                const eventKey = `${era.id}_${idx}`;
+                                const isCollapsed = state.expandedEvents[eventKey] === false;
+                                return `
+                                    <div class="relative pr-6 fade-in-up" style="animation-delay: ${idx * 0.04}s">
+                                        <!-- نقطة الخط الزمني -->
+                                        <div class="absolute -right-[9px] top-3 w-4 h-4 rounded-full bg-emerald-600 border-4 border-emerald-100 dark:border-emerald-950 shadow-sm"></div>
+                                        
+                                        <div onclick="toggleEventDetail('${eventKey}')" class="interactive-card ripple-host bg-slate-50 dark:bg-slate-800/70 hover:bg-emerald-50/70 dark:hover:bg-slate-800 rounded-2xl p-4 border border-slate-200/70 dark:border-slate-700/80 cursor-pointer">
+                                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                                <span class="inline-block text-xs font-black text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950 px-2.5 py-0.5 rounded-lg">
+                                                    ${ev.date}
+                                                </span>
+                                                <i id="event-icon-${eventKey}" class="fa-solid fa-chevron-up text-slate-400 text-xs transition-transform duration-300 ${isCollapsed ? 'rotate-180' : ''}"></i>
+                                            </div>
+                                            <h4 class="font-extrabold text-sm sm:text-base text-slate-800 dark:text-slate-100">${ev.title}</h4>
+                                            <div id="event-desc-${eventKey}" class="accordion-content ${isCollapsed ? 'collapsed' : ''}">
+                                                <div class="accordion-inner">
+                                                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">${ev.desc}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('') : '<p class="text-center text-xs text-slate-400 py-6">لا توجد أحداث مطابقة لبحثك في هذا العصر.</p>'}
+                        </div>
+
+                        <!-- أزرار التنقل السريع بين العصور والأنشطة -->
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap justify-between items-center gap-3">
+                            <div class="flex items-center gap-2">
+                                ${era.order > 1 ? `
+                                    <button onclick="navigateTo('timeline', '${historicalEras[era.order - 2].id}')" class="ripple-host px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center gap-1.5 transition active:scale-95">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <span>السابق</span>
+                                    </button>
+                                ` : ''}
+                                ${era.order < historicalEras.length ? `
+                                    <button onclick="navigateTo('timeline', '${historicalEras[era.order].id}')" class="ripple-host px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center gap-2 transition active:scale-95">
+                                        <span>التالي: ${historicalEras[era.order].title.replace('خلافة ', '').replace(' رضي الله عنه', '')}</span>
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                            <button onclick="navigateTo('activities')" class="shimmer-btn ripple-host px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-md transition active:scale-95">
+                                <i class="fa-solid fa-gamepad"></i>
+                                <span>اختبر فهمك الآن</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // الشاشة 3: الأنشطة التفاعلية
+        function renderActivities() {
+            const act = activitiesBank[state.currentActivityIndex];
+            const isCompleted = state.completedActivities.includes(act.id);
+
+            let interactionHTML = '';
+
+            // النمط 1: اختيار من متعدد
+            if (act.type === 'mcq') {
+                interactionHTML = `
+                    <div class="space-y-3">
+                        ${act.options.map((opt, idx) => `
+                            <button onclick="checkMCQ(${idx})" class="interactive-card w-full text-right p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:bg-emerald-50/60 dark:hover:bg-emerald-950/40 font-bold text-sm sm:text-base text-slate-700 dark:text-slate-200 flex items-center justify-between group">
+                                <span>${opt}</span>
+                                <span class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center text-xs font-black text-slate-500 dark:text-slate-300 transition">
+                                    ${['أ', 'ب', 'ج', 'د'][idx]}
+                                </span>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+            } 
+            // النمط 2: الترتيب الزمني التفاعلي
+            else if (act.type === 'ordering') {
+                interactionHTML = `
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border-2 border-dashed border-emerald-300 dark:border-emerald-700 min-h-[130px]">
+                            <p class="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 mb-2.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-arrow-down-1-9"></i>
+                                <span>ترتيبك المختار (من الأقدم للأحدث):</span>
+                            </p>
+                            <div class="space-y-2">
+                                ${state.tempOrderSelection.map((itemId, idx) => {
+                                    const itemObj = act.items.find(i => i.id === itemId);
+                                    return `
+                                        <div class="fade-in-up flex items-center justify-between bg-emerald-100 dark:bg-emerald-950 text-emerald-950 dark:text-emerald-200 px-3.5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm border border-emerald-200 dark:border-emerald-800">
+                                            <span>${idx + 1}. ${itemObj.text}</span>
+                                            <button onclick="removeOrderItem('${itemId}')" class="w-6 h-6 rounded-lg bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-300 hover:bg-rose-600 hover:text-white flex items-center justify-center transition"><i class="fa-solid fa-xmark"></i></button>
+                                        </div>
+                                    `;
+                                }).join('')}
+                                ${state.tempOrderSelection.length === 0 ? '<p class="text-xs text-slate-400 text-center py-5">اضغط على البطاقات بالأسفل لترتيبها هنا...</p>' : ''}
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            ${act.items.filter(i => !state.tempOrderSelection.includes(i.id)).map(item => `
+                                <button onclick="selectOrderItem('${item.id}')" class="interactive-card p-3.5 rounded-2xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-amber-500 font-bold text-xs sm:text-sm text-slate-700 dark:text-slate-200 text-right flex items-center gap-2">
+                                    <span class="w-6 h-6 rounded-lg bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 flex items-center justify-center shrink-0"><i class="fa-solid fa-plus text-xs"></i></span>
+                                    <span>${item.text}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        ${state.tempOrderSelection.length === act.items.length ? `
+                            <button onclick="checkOrdering()" class="w-full py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-600 text-white font-black text-sm shadow-lg pulse-btn transition active:scale-95">
+                                <i class="fa-solid fa-check-double ml-1"></i> تحقق من الترتيب الزمني
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            // النمط 3: التوصيل التفاعلي (Matching)
+            else if (act.type === 'matching') {
+                const shuffledRights = [...act.pairs].map(p => p.right).sort();
+                interactionHTML = `
+                    <div class="space-y-4">
+                        <p class="text-xs text-amber-900 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/60 p-3 rounded-2xl border border-amber-200 dark:border-amber-800 font-semibold">
+                            <i class="fa-solid fa-hand-pointer text-amber-600 dark:text-amber-400 ml-1"></i>
+                            اضغط على <strong>الإنجاز التاريخي</strong> أولاً، ثم اضغط على <strong>اسم الخليفة</strong> لربطهما معاً:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- عمود الإنجازات -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-black text-slate-500 dark:text-slate-400">1. الإنجاز التاريخي:</h4>
+                                ${act.pairs.map(p => {
+                                    const matchedRight = state.tempMatches[p.left];
+                                    const isSelected = state.tempMatchLeft === p.left;
+                                    return `
+                                        <button onclick="selectMatchLeft('${p.left}')" class="interactive-card w-full p-3.5 rounded-2xl border-2 text-right text-xs sm:text-sm font-bold ${isSelected ? 'border-amber-500 bg-amber-50 dark:bg-amber-950/60 ring-2 ring-amber-200 dark:ring-amber-800 text-slate-900 dark:text-white' : matchedRight ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-950 dark:text-emerald-200' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200'}">
+                                            <div>${p.left}</div>
+                                            ${matchedRight ? `<div class="text-[11px] text-emerald-700 dark:text-emerald-400 font-extrabold mt-1.5 flex items-center gap-1"><i class="fa-solid fa-link"></i> مرتبط بـ: ${matchedRight}</div>` : ''}
+                                        </button>
+                                    `;
+                                }).join('')}
+                            </div>
+
+                            <!-- عمود الخلفاء -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-black text-slate-500 dark:text-slate-400">2. الخليفة الراشد:</h4>
+                                ${shuffledRights.map(rightVal => `
+                                    <button onclick="selectMatchRight('${rightVal}')" class="interactive-card w-full p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 bg-slate-50 dark:bg-slate-800/80 hover:bg-emerald-50/40 dark:hover:bg-emerald-950/40 text-right text-xs sm:text-sm font-extrabold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                                        <i class="fa-solid fa-user-check text-emerald-600 dark:text-emerald-400"></i>
+                                        <span>${rightVal}</span>
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        ${Object.keys(state.tempMatches).length === act.pairs.length ? `
+                            <button onclick="checkMatching()" class="w-full py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-600 text-white font-black text-sm shadow-lg pulse-btn transition active:scale-95">
+                                <i class="fa-solid fa-check-circle ml-1"></i> تأكيد التوصيل والتحقق
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            // النمط 4: صح أم خطأ
+            else if (act.type === 'truefalse') {
+                interactionHTML = `
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <button onclick="checkTrueFalse(true)" class="interactive-card p-6 rounded-3xl border-2 border-emerald-200 dark:border-emerald-800 bg-emerald-50/60 dark:bg-emerald-950/50 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 text-emerald-800 dark:text-emerald-300 font-black text-base sm:text-lg flex flex-col items-center gap-2.5">
+                            <i class="fa-solid fa-circle-check text-3xl"></i>
+                            <span>عبارة صحيحة</span>
+                        </button>
+                        <button onclick="checkTrueFalse(false)" class="interactive-card p-6 rounded-3xl border-2 border-rose-200 dark:border-rose-800 bg-rose-50/60 dark:bg-rose-950/50 hover:bg-rose-600 hover:text-white hover:border-rose-600 text-rose-800 dark:text-rose-300 font-black text-base sm:text-lg flex flex-col items-center gap-2.5">
+                            <i class="fa-solid fa-circle-xmark text-3xl"></i>
+                            <span>عبارة خاطئة</span>
+                        </button>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="fade-in-up space-y-5">
+                    <div class="flex items-center gap-3 px-1">
+                        <span class="font-black text-sm text-emerald-900 dark:text-emerald-300">${state.currentActivityIndex + 1} / ${activitiesBank.length}</span>
+                        <div class="act-progress flex-1"><div style="width:${Math.round((state.completedActivities.length / activitiesBank.length) * 100)}%"></div></div>
+                    </div>
+                    <!-- شريط أرقام الأنشطة -->
+                    <div class="flex items-center justify-between bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+                        <div class="flex gap-1.5">
+                            ${activitiesBank.map((a, idx) => {
+                                const done = state.completedActivities.includes(a.id);
+                                const active = idx === state.currentActivityIndex;
+                                return `
+                                    <button onclick="switchActivity(${idx})" class="w-9 h-9 rounded-xl font-black text-xs transition-all active:scale-90 ${active ? 'bg-emerald-800 dark:bg-emerald-700 text-white ring-2 ring-amber-400 scale-105' : done ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'}">
+                                        ${done ? '<i class="fa-solid fa-check"></i>' : idx + 1}
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                        <span class="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-xl">نشاط ${state.currentActivityIndex + 1} / ${activitiesBank.length}</span>
+                    </div>
+
+                    <!-- بطاقة عرض الفكرة الرئيسية للنشاط -->
+                    <div class="bg-gradient-to-l from-amber-50 to-orange-50 dark:from-amber-950/60 dark:to-slate-900 border-r-4 border-amber-500 rounded-2xl p-4 shadow-sm">
+                        <div class="flex items-center gap-2 text-amber-800 dark:text-amber-300 font-black text-xs mb-1">
+                            <i class="fa-solid fa-lightbulb text-amber-500 text-base"></i>
+                            <span>تمهيد معرفي (${act.category})</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-bold">${act.mainIdea}</p>
+                    </div>
+
+                    <!-- بطاقة النشاط التفاعلي -->
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-6 shadow-sm border border-slate-200 dark:border-slate-800 transition-colors">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-extrabold text-xs">
+                                نمط التفاعل: ${act.type === 'mcq' ? 'اختيار من متعدد' : act.type === 'ordering' ? 'ترتيب زمني' : act.type === 'matching' ? 'توصيل ومطابقة' : 'صواب أم خطأ'}
+                            </span>
+                            ${isCompleted ? '<span class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 px-2.5 py-1 rounded-full"><i class="fa-solid fa-circle-check"></i> مُنجز</span>' : ''}
+                        </div>
+
+                        <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white mb-5 leading-relaxed">
+                            ${act.question}
+                        </h3>
+
+                        ${interactionHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- 7. منطق التحقق والتغذية الراجعة التربوية ---
+        function switchActivity(idx) {
+            playSound('click');
+            state.currentActivityIndex = idx;
+            state.tempOrderSelection = [];
+            state.tempMatchLeft = null;
+            state.tempMatches = {};
+            render(true);
+        }
+
+        function checkMCQ(selectedIdx) {
+            const act = activitiesBank[state.currentActivityIndex];
+            showPedagogicalFeedback(selectedIdx === act.correctIndex, act);
+        }
+
+        function selectOrderItem(id) {
+            playSound('pop');
+            if (!state.tempOrderSelection.includes(id)) {
+                state.tempOrderSelection.push(id);
+                render();
+            }
+        }
+        function removeOrderItem(id) {
+            playSound('click');
+            state.tempOrderSelection = state.tempOrderSelection.filter(i => i !== id);
+            render();
+        }
+        function checkOrdering() {
+            const act = activitiesBank[state.currentActivityIndex];
+            const isCorrect = JSON.stringify(state.tempOrderSelection) === JSON.stringify(act.correctOrder);
+            showPedagogicalFeedback(isCorrect, act);
+        }
+
+        function selectMatchLeft(leftText) {
+            playSound('pop');
+            state.tempMatchLeft = leftText;
+            render();
+        }
+        function selectMatchRight(rightText) {
+            playSound('pop');
+            if (!state.tempMatchLeft) {
+                const act = activitiesBank[state.currentActivityIndex];
+                const unlinked = act.pairs.find(p => !state.tempMatches[p.left]);
+                if (unlinked) state.tempMatchLeft = unlinked.left;
+            }
+            if (state.tempMatchLeft) {
+                state.tempMatches[state.tempMatchLeft] = rightText;
+                state.tempMatchLeft = null;
+                render();
+            }
+        }
+        function checkMatching() {
+            const act = activitiesBank[state.currentActivityIndex];
+            const isCorrect = act.pairs.every(p => state.tempMatches[p.left] === p.right);
+            showPedagogicalFeedback(isCorrect, act);
+        }
+
+        function checkTrueFalse(userAns) {
+            const act = activitiesBank[state.currentActivityIndex];
+            showPedagogicalFeedback(userAns === act.correctAnswer, act);
+        }
+
+        // إطلاق قصاصات احتفالية ذهبية وخضراء عند الإجابة الصحيحة
+        function triggerCelebrationBurst() {
+            const colors = ['#fbbf24', '#10b981', '#34d399', '#f59e0b', '#fde68a'];
+            for (let i = 0; i < 28; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.backgroundColor = colors[i % colors.length];
+                piece.style.left = '50%';
+                piece.style.top = '45%';
+                const angle = (Math.PI * 2 * i) / 28 + (Math.random() * 0.3);
+                const distance = 90 + Math.random() * 140;
+                piece.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+                piece.style.setProperty('--ty', `${Math.sin(angle) * distance - 40}px`);
+                document.body.appendChild(piece);
+                setTimeout(() => piece.remove(), 1150);
+            }
+        }
+
+        function showPedagogicalFeedback(isCorrect, act) {
+            const modal = document.getElementById('feedbackModal');
+            const card = document.getElementById('feedbackCard');
+            const iconContainer = document.getElementById('feedbackIconContainer');
+            const title = document.getElementById('feedbackTitle');
+            const message = document.getElementById('feedbackMessage');
+            const pedBox = document.getElementById('pedagogicalBox');
+            const pedBadge = document.getElementById('pedagogicalBadge');
+            const pedText = document.getElementById('pedagogicalText');
+            const actions = document.getElementById('feedbackActions');
+
+            if (isCorrect) {
+                playSound('success');
+                triggerCelebrationBurst();
+                if (!state.completedActivities.includes(act.id)) {
+                    state.completedActivities.push(act.id);
+                    updateProgress();
+                }
+
+                iconContainer.className = 'w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center text-3xl mb-4 shadow-lg';
+                iconContainer.innerHTML = '<i class="fa-solid fa-trophy"></i>';
+                title.className = 'text-2xl font-black mb-1 text-emerald-800 dark:text-emerald-300';
+                title.textContent = 'أحسنت! استجابة صحيحة';
+                message.textContent = 'تعزيز إيجابي: إجابتك دقيقة وتدل على فهم ممتاز للتسلسل التاريخي.';
+
+                pedBox.className = 'rounded-2xl p-4 mb-6 border bg-emerald-50 dark:bg-emerald-950/70 border-emerald-200 dark:border-emerald-800 text-right';
+                pedBadge.className = 'flex items-center gap-2 font-black text-sm mb-1.5 text-emerald-800 dark:text-emerald-300';
+                pedBadge.innerHTML = '<i class="fa-solid fa-star text-amber-500"></i> <span>معلومة إثرائية:</span>';
+                pedText.className = 'text-xs sm:text-sm leading-relaxed text-emerald-950 dark:text-emerald-100 font-semibold';
+                pedText.textContent = act.enrichment;
+
+                const hasNext = state.currentActivityIndex < activitiesBank.length - 1;
+                actions.innerHTML = `
+                    <button onclick="closeModal(${hasNext})" class="shimmer-btn w-full py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-600 text-white font-black text-sm shadow-lg transition active:scale-95">
+                        ${hasNext ? 'الانتقال للنشاط التالي <i class="fa-solid fa-arrow-left mr-1"></i>' : 'إتمام جميع الأنشطة بنجاح <i class="fa-solid fa-check mr-1"></i>'}
+                    </button>
+                `;
+            } else {
+                playSound('error');
+                iconContainer.className = 'w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 text-white flex items-center justify-center text-3xl mb-4 shadow-lg';
+                iconContainer.innerHTML = '<i class="fa-solid fa-rotate-left"></i>';
+                title.className = 'text-2xl font-black mb-1 text-rose-700 dark:text-rose-400';
+                title.textContent = 'حاول مرة أخرى!';
+                message.textContent = 'استجابة غير صحيحة: اقرأ المعلومة العلاجية بالأسفل ثم أعد المحاولة.';
+
+                pedBox.className = 'rounded-2xl p-4 mb-6 border bg-amber-50 dark:bg-amber-950/60 border-amber-300 dark:border-amber-800 text-right';
+                pedBadge.className = 'flex items-center gap-2 font-black text-sm mb-1.5 text-amber-900 dark:text-amber-300';
+                pedBadge.innerHTML = '<i class="fa-solid fa-book-medical text-amber-600 dark:text-amber-400"></i> <span>معلومة تفسيرية علاجية:</span>';
+                pedText.className = 'text-xs sm:text-sm leading-relaxed text-slate-800 dark:text-slate-200 font-semibold';
+                pedText.textContent = act.remedial;
+
+                actions.innerHTML = `
+                    <button onclick="retryActivity()" class="w-full py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-emerald-950 font-black text-sm shadow-lg transition active:scale-95">
+                        <i class="fa-solid fa-rotate-right ml-1"></i> إعادة حل النشاط مرة أخرى
+                    </button>
+                `;
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                card.classList.remove('scale-90', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 20);
+        }
+
+        function retryActivity() {
+            state.tempOrderSelection = [];
+            state.tempMatchLeft = null;
+            state.tempMatches = {};
+            closeModal(false);
+            render();
+        }
+
+        function closeModal(goNext) {
+            const modal = document.getElementById('feedbackModal');
+            const card = document.getElementById('feedbackCard');
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-90', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                if (goNext && state.currentActivityIndex < activitiesBank.length - 1) {
+                    switchActivity(state.currentActivityIndex + 1);
+                } else {
+                    render();
+                }
+            }, 220);
+        }
+
+        // إضافة تأثير تموج اللمس (Ripple) على الأزرار التفاعلية
+        document.addEventListener('pointerdown', function(e) {
+            const host = e.target.closest('.ripple-host, .interactive-card');
+            if (!host) return;
+            const rect = host.getBoundingClientRect();
+            const circle = document.createElement('span');
+            const diameter = Math.max(rect.width, rect.height);
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+            circle.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+            circle.classList.add('ripple-circle');
+            host.appendChild(circle);
+            setTimeout(() => circle.remove(), 550);
+        });
+
+        // دعم السحب الأفقي (Swipe) للتنقل السلس بين التبويبات الرئيسية على الموبايل
+        let touchStartX = 0;
+        let touchStartY = 0;
+        document.addEventListener('touchstart', function(e) {
+            if (e.target.closest('.no-scrollbar')) return; // تجاهل السحب داخل شريط العصور الأفقي
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function(e) {
+            if (e.target.closest('.no-scrollbar')) return;
+            const modal = document.getElementById('feedbackModal');
+            if (modal && !modal.classList.contains('hidden')) return;
+
+            const deltaX = e.changedTouches[0].screenX - touchStartX;
+            const deltaY = e.changedTouches[0].screenY - touchStartY;
+            if (Math.abs(deltaX) > 85 && Math.abs(deltaX) > Math.abs(deltaY) * 1.8) {
+                const viewsOrder = ['home', 'timeline', 'activities'];
+                const currentIdx = viewsOrder.indexOf(state.currentView);
+                // مراعاة اتجاه RTL العربي
+                if (deltaX > 0 && currentIdx < viewsOrder.length - 1) {
+                    navigateTo(viewsOrder[currentIdx + 1]);
+                } else if (deltaX < 0 && currentIdx > 0) {
+                    navigateTo(viewsOrder[currentIdx - 1]);
+                }
+            }
+        }, { passive: true });
+
+        // تشغيل شاشة البداية المتحركة ثم عرض التطبيق
+        window.onload = function() {
+            initDarkMode();
+            render(true);
+            const loader = document.getElementById('splashLoader');
+            const splash = document.getElementById('splashScreen');
+            
+            setTimeout(() => { if (loader) loader.style.width = '65%'; }, 250);
+            setTimeout(() => { if (loader) loader.style.width = '100%'; }, 650);
+            setTimeout(() => {
+                if (splash) {
+                    splash.classList.add('splash-hide');
+                    setTimeout(() => { splash.style.display = 'none'; }, 700);
+                }
+            }, 1150);
+        };
+    </script>
+</body>
+</html>
